@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10151c">
+  <meta name="description" content="DIVZZ.exe — portfolio interaktif developer dan visual creator dalam game room explorer 2D.">
+  <title>DIVZZ.exe — Room Explorer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="DIVZZ home"><span class="brand-icon">D<span>_</span></span><span>DIVZZ<span class="muted">.exe</span></span></a>
+      <div class="system-status"><i></i> ROOM EXPLORER <span>•</span> BUILD 03.0</div>
+      <button id="helpBtn" class="small-btn" type="button">? CONTROLS</button>
+    </header>
+
+    <main>
+      <section class="intro-panel" id="introPanel">
+        <div class="intro-copy">
+          <p class="eyebrow">INTERACTIVE DEVELOPER PORTFOLIO</p>
+          <h1>Explore my<br><span>digital room.</span></h1>
+          <p class="intro-desc">Bukan portfolio yang cuma digulir. Masuk ke workspace, temukan project, kenali proses kreatif, dan buka cerita di balik setiap objek. Dibangun sebagai pengalaman interaktif yang tetap ringan, responsif, dan mudah dijelajahi.</p>
+          <button id="startBtn" class="primary-btn">▶ MASUK KE RUANGAN</button>
+          <div class="intro-tags"><span>WASD / TOUCH</span><span>E / TAP INTERACT</span><span>GAME MODE 2D</span></div>
+        </div>
+        <div class="preview-room" aria-hidden="true">
+          <div class="preview-window"></div><div class="preview-desk"></div>
+          <div class="preview-laptop">▰</div><div class="preview-plant">♣</div>
+          <div class="preview-character"><i></i><b></b><em></em></div>
+          <span class="preview-label">PLAYER HOME / 001</span>
+        </div>
+      </section>
+
+      <section class="game-panel hidden" id="gamePanel" aria-label="Game room">
+        <div class="game-topline">
+          <div><span class="tiny-label">CURRENT LOCATION</span><strong>DIVZZ'S WORKSPACE</strong></div>
+          <div class="objective"><span class="objective-dot"></span><span id="objectiveText">Cari benda yang bisa diinteraksi.</span></div>
+          <div class="game-stats"><span>DISCOVERED</span><b id="foundCount">0 / 7</b></div>
+        </div>
+
+        <div class="game-stage-wrap">
+          <div class="game-stage" id="gameStage" tabindex="0" aria-label="Ruangan game. Kamera mengikuti karakter saat berjalan. Gunakan WASD, tombol panah, atau kontrol sentuh untuk bergerak.">
+            <div class="room-world" id="roomWorld">
+            <div class="back-wall"></div>
+            <div class="wall-trim"></div>
+            <div class="wall-window prop-decoration"><div class="window-sky"></div><div class="window-city"></div></div>
+            <div class="wall-poster prop-decoration"><small>KEEP<br>BUILDING.</small><b>01</b></div>
+            <div class="wall-shelf prop-decoration"><i></i><i></i><i></i><span>DEV LOGS</span></div>
+            <div class="floor"></div>
+            <div class="rug prop-decoration"></div>
+            <div class="plant prop-decoration"><span>♣</span><i></i></div>
+            <div class="floor-lamp prop-decoration"><i></i><b></b><span></span></div>
+            <div class="bed prop-decoration"><div class="pillow"></div><div class="blanket"></div></div>
+            <div class="desk prop-decoration"><div class="desk-top"></div><div class="desk-leg left"></div><div class="desk-leg right"></div><div class="desk-drawer"></div></div>
+            <div class="desk-lamp prop-decoration"><i></i><b></b><span></span></div>
+            <div class="coffee prop-decoration"><span>☕</span></div>
+
+            <button class="interactable object-phone" data-object="contact" aria-label="Handphone, kontak">
+              <span class="object-emoji">📱</span><span class="object-name">HANDPHONE</span><span class="object-hint">CONTACT</span>
+            </button>
+            <button class="interactable object-pc" data-object="computer" aria-label="Komputer, tentang saya">
+              <span class="object-emoji">🖥️</span><span class="object-name">COMPUTER</span><span class="object-hint">ABOUT ME</span>
+            </button>
+            <button class="interactable object-books" data-object="skills" aria-label="Rak buku, skill">
+              <span class="object-emoji">📚</span><span class="object-name">BOOKSHELF</span><span class="object-hint">SKILLS</span>
+            </button>
+            <button class="interactable object-project" data-object="projects" aria-label="Kotak project">
+              <span class="object-emoji">📦</span><span class="object-name">PROJECT BOX</span><span class="object-hint">PROJECTS</span>
+            </button>
+            <button class="interactable object-camera" data-object="photography" aria-label="Kamera, fotografi">
+              <span class="object-emoji">📷</span><span class="object-name">CAMERA</span><span class="object-hint">CREATIVE SIDE</span>
+            </button>
+            <button class="interactable object-trophy" data-object="achievements" aria-label="Piala, pencapaian">
+              <span class="object-emoji">🏆</span><span class="object-name">TROPHY</span><span class="object-hint">ACHIEVEMENTS</span>
+            </button>
+            <button class="interactable object-door" data-object="guestbook" aria-label="Pintu, guestbook">
+              <span class="object-emoji">🚪</span><span class="object-name">EXIT / GUESTBOOK</span><span class="object-hint">LEAVE A MESSAGE</span>
+            </button>
+
+            <div class="interaction-radius" id="interactionRadius" aria-hidden="true"></div>
+            <div class="player" id="player" role="img" aria-label="Karakter Divzz">
+              <div class="player-shadow"></div><div class="player-body"><i class="player-hair"></i><i class="player-face"></i><i class="player-shirt"></i><i class="player-arm"></i><i class="player-leg leg-a"></i><i class="player-leg leg-b"></i></div>
+              <span class="player-name-tag">DIVZZ</span>
+            </div>
+            </div>
+            <div class="proximity-prompt hidden" id="proximityPrompt"><span class="prompt-key">E</span><span id="promptText">INTERACT</span></div>
+            <div class="stage-message" id="stageMessage">Gunakan WASD / tombol panah untuk bergerak.</div>
+          </div>
+        </div>
+
+        <div class="game-bottom">
+          <div class="control-legend"><span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> / <kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd> <small>MOVE</small></span><span><kbd>E</kbd> / <kbd>ENTER</kbd> <small>INTERACT</small></span></div>
+          <div class="mobile-controls" aria-label="Kontrol gerak mobile">
+            <button class="mobile-interact" id="mobileInteract" type="button" aria-label="Interaksi dengan objek terdekat">INTERACT&nbsp; ↗</button>
+            <button data-dir="up" aria-label="Bergerak ke atas">▲</button>
+            <div><button data-dir="left" aria-label="Bergerak ke kiri">◀</button><button data-dir="down" aria-label="Bergerak ke bawah">▼</button><button data-dir="right" aria-label="Bergerak ke kanan">▶</button></div>
+          </div>
+          <button class="exit-btn" id="exitBtn">↩ KEMBALI KE MENU</button>
+        </div>
+      </section>
+    </main>
+    <footer><span>DIVZZ.exe <i>•</i> ROOM EXPLORER</span><span>BUILT TO BE EXPLORED, NOT JUST SCROLLED.</span></footer>
+  </div>
+
+  <div class="modal-backdrop hidden" id="objectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <article class="object-modal">
+      <button class="modal-close" id="modalClose" aria-label="Tutup">×</button>
+      <div class="modal-icon" id="modalIcon">📱</div>
+      <p class="modal-eyebrow" id="modalEyebrow">OBJECT INTERACTION</p>
+      <h2 id="modalTitle">Object title</h2>
+      <div class="modal-content" id="modalContent"></div>
+      <div class="modal-footer"><span><i></i> OBJECT DISCOVERED</span><button id="modalDone" class="primary-btn">SELESAI / KEMBALI</button></div>
+    </article>
+  </div>
+
+  <div class="modal-backdrop hidden" id="helpModal" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+    <article class="help-modal">
+      <button class="modal-close" id="helpClose" aria-label="Tutup">×</button>
+      <p class="modal-eyebrow">PLAYER MANUAL</p><h2 id="helpTitle">Cara bermain</h2>
+      <div class="help-row"><span>MOVE</span><p>Gunakan <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> atau tombol panah.</p></div>
+      <div class="help-row"><span>INTERACT</span><p>Dekati benda sampai muncul prompt, lalu tekan <kbd>E</kbd> atau <kbd>ENTER</kbd>.</p></div>
+      <div class="help-row"><span>MOBILE</span><p>Gunakan tombol arah di bawah ruangan. Saat dekat objek, tekan tombol INTERACT atau sentuh prompt.</p></div>
+      <button class="primary-btn" id="helpOkay">SIAP, MULAI!</button>
+    </article>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
