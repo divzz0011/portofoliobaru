@@ -26,7 +26,7 @@
   const objects = {
     contact: {
       icon: "📱", name: "Handphone", eyebrow: "CONTACT / SIGNAL READY",
-      title: "Hubungi Divzz.",
+      title: "Hubungi Saya.",
       html: `<p>Handphone ini adalah jalur komunikasi utama, jika anda memiliki ide, ingin bekerja sama, atau mau membahas project, anda dapat mengirim pesan melalui salah satu kanal berikut.</p>
         <a class="contact-link" href="mailto:divzzxxx@gmail.com">✉ EMAIL</a>
         <a class="contact-link" href="https://github.com/divzz0011" target="_blank" rel="noreferrer">⌘ GITHUB</a>
